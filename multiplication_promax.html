@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Multiplication Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Multiplication Table</h1>
+    <p>Enter a number to generate its multiplication table:</p>
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+    <button onclick="generateTable()">Generate Table</button>
+
+    <table id="multiplicationTable">
+        <thead>
+            <tr>
+                <th>Multiplier</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamic rows will be added here -->
+        </tbody>
+    </table>
+
+    <script>
+        function generateTable() {
+            const num = document.getElementById('numberInput').value;
+            const tableBody = document.querySelector('#multiplicationTable tbody');
+
+            // Clear previous table rows
+            tableBody.innerHTML = '';
+
+            if (num === '') {
+                alert('Please enter a number!');
+                return;
+            }
+
+            for (let i = 1; i <= 100; i++) {
+                const row = document.createElement('tr');
+                const multiplierCell = document.createElement('td');
+                const resultCell = document.createElement('td');
+
+                multiplierCell.textContent = `${num} x ${i}`;
+                resultCell.textContent = num * i;
+
+                row.appendChild(multiplierCell);
+                row.appendChild(resultCell);
+                tableBody.appendChild(row);
+            }
+        }
+    </script>
+</body>
+</html>
